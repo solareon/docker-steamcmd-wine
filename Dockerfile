@@ -60,6 +60,11 @@ RUN useradd -u "${PUID}" -m "${USER}" \
 	# Symlink steamclient.so; So misconfigured dedicated servers can find it
 	&& ln -s "${STEAMCMDDIR}/linux64/steamclient.so" "/usr/lib/x86_64-linux-gnu/steamclient.so"
 
+# Add unicode support
+RUN locale-gen en_US.UTF-8
+ENV LANG 'en_US.UTF-8'
+ENV LANGUAGE 'en_US:en'
+
 FROM build_stage AS ubuntu-22.04-root
 WORKDIR ${STEAMCMDDIR}
 
