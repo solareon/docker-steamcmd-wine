@@ -1,5 +1,5 @@
 # Set the base image
-FROM ubuntu:18.04 as build_stage
+FROM ubuntu:20.04 as build_stage
 
 # Prevent tzdata apt-get installation from asking for input.
 ENV DEBIAN_FRONTEND=noninteractive
@@ -65,8 +65,8 @@ RUN locale-gen en_US.UTF-8
 ENV LANG 'en_US.UTF-8'
 ENV LANGUAGE 'en_US:en'
 
-FROM build_stage AS ubuntu-18.04-root
+FROM build_stage AS ubuntu-root
 WORKDIR ${STEAMCMDDIR}
 
-FROM ubuntu-18.04-root as ubuntu-18.04
+FROM ubuntu-root as ubuntu
 USER ${USER}
